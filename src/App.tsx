@@ -6,6 +6,7 @@ import { basename, join } from '@tauri-apps/api/path'
 import { marked } from 'marked'
 import './App.css'
 
+
 type NoteNode = {
   name: string
   path: string
