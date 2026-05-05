@@ -1,0 +1,275 @@
+.app-shell {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+
+.topbar,
+.statusbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 14px 18px;
+  border-bottom: 1px solid var(--border);
+  background: var(--panel);
+}
+
+.topbar h1,
+.pane-header h2 {
+  margin: 0;
+}
+
+.topbar p,
+.statusbar,
+.shortcut-hint,
+.search-result span,
+.search-empty,
+.empty-state {
+  color: var(--muted);
+}
+
+.topbar-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.panes {
+  display: grid;
+  flex: 1;
+  grid-template-columns: 280px minmax(320px, 1fr) minmax(320px, 1fr);
+  min-height: 0;
+}
+
+.pane {
+  min-height: 0;
+  border-right: 1px solid var(--border);
+  background: var(--panel);
+}
+
+.pane:last-child {
+  border-right: 0;
+}
+
+.pane-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 14px 16px;
+  border-bottom: 1px solid var(--border);
+}
+
+.sidebar,
+.preview-pane {
+  overflow: auto;
+}
+
+.sidebar {
+  padding-bottom: 16px;
+}
+
+.shortcut-hint,
+.empty-state {
+  padding: 0 16px;
+}
+
+.tree {
+  margin: 0;
+  padding: 0 10px;
+  list-style: none;
+}
+
+.tree li {
+  margin: 4px 0;
+}
+
+.tree-folder summary,
+.tree-file,
+.search-result,
+button {
+  cursor: pointer;
+}
+
+.tree-folder summary,
+.tree-file {
+  width: 100%;
+  border: 0;
+  border-radius: 8px;
+  padding: 8px 10px;
+  text-align: left;
+  color: var(--text);
+  background: transparent;
+}
+
+.tree-file.selected,
+.tree-folder summary:hover,
+.tree-file:hover,
+.search-result:hover,
+button:hover {
+  background: var(--accent-soft);
+}
+
+.tree-folder > ul {
+  padding-left: 14px;
+}
+
+.editor-pane {
+  display: flex;
+  flex-direction: column;
+}
+
+.editor {
+  flex: 1;
+  min-height: 0;
+  resize: none;
+  border: 0;
+  padding: 20px;
+  font: 15px/1.6 var(--mono);
+  color: var(--text);
+  background: var(--editor);
+}
+
+.editor:focus,
+.search-input:focus,
+button:focus-visible,
+.tree-file:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: -2px;
+}
+
+.preview {
+  padding: 20px;
+  text-align: left;
+  line-height: 1.65;
+}
+
+.preview :first-child {
+  margin-top: 0;
+}
+
+.preview code,
+.preview pre {
+  font-family: var(--mono);
+  background: var(--editor);
+}
+
+.preview code {
+  padding: 2px 6px;
+  border-radius: 6px;
+}
+
+.preview pre {
+  overflow: auto;
+  padding: 14px;
+  border-radius: 10px;
+}
+
+button {
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 9px 14px;
+  color: var(--text);
+  background: var(--button);
+}
+
+button:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.statusbar {
+  border-top: 1px solid var(--border);
+  border-bottom: 0;
+  font-size: 13px;
+}
+
+.statusbar span:last-child {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.search-overlay {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding-top: 12vh;
+  background: rgba(0, 0, 0, 0.45);
+}
+
+.search-modal {
+  width: min(640px, 92vw);
+  overflow: hidden;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  background: var(--panel);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
+}
+
+.search-input {
+  width: 100%;
+  box-sizing: border-box;
+  border: 0;
+  border-bottom: 1px solid var(--border);
+  padding: 16px;
+  font: inherit;
+  color: var(--text);
+  background: transparent;
+}
+
+.search-results {
+  max-height: 360px;
+  overflow: auto;
+  padding: 8px;
+}
+
+.search-result {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  gap: 4px;
+  border: 0;
+  border-radius: 10px;
+  padding: 12px;
+  text-align: left;
+  background: transparent;
+}
+
+.search-empty {
+  margin: 0;
+  padding: 16px;
+}
+
+@media (max-width: 1100px) {
+  .panes {
+    grid-template-columns: 220px 1fr;
+    grid-template-rows: minmax(260px, 1fr) minmax(260px, 1fr);
+  }
+
+  .preview-pane {
+    grid-column: 1 / -1;
+    border-top: 1px solid var(--border);
+  }
+}
+
+@media (max-width: 720px) {
+  .topbar,
+  .statusbar {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .panes {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .pane {
+    min-height: 260px;
+    border-right: 0;
+    border-bottom: 1px solid var(--border);
+  }
+}
